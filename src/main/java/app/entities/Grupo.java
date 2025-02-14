@@ -1,4 +1,4 @@
-package entities;
+package app.entities;
 
 import java.util.*;
 
@@ -6,6 +6,8 @@ public class Grupo {
     public String nombre;
     public ArrayList<String> participantes = new ArrayList<>();
     public ArrayList<Gasto> gastos = new ArrayList<>();
+
+
 
 
     public ArrayList<GastoPorPersona> liquidarGastos(){
@@ -16,11 +18,13 @@ public class Grupo {
         }
 
         for(Gasto gasto : gastos){
-            gastosPorPersona.stream().filter(x-> x.nombre == gasto.nombrePagador).findFirst().get().agregarGasto(gasto.monto - gasto.valorPromedio());
+            gastosPorPersona.stream().filter(x-> x.nombre.equals(gasto.nombrePagador))
+                    .findFirst().get()
+                    .agregarGasto(gasto.monto - gasto.valorPromedio());
 
             for(String nombrePrestado : gasto.nombresPrestados){
 
-                gastosPorPersona.stream().filter(x-> x.nombre == nombrePrestado)
+                gastosPorPersona.stream().filter(x-> x.nombre.equals(nombrePrestado))
                         .findFirst()
                         .get()
                         .agregarGasto(-gasto.valorPromedio());

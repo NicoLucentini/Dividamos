@@ -1,4 +1,4 @@
-package entities;
+package app.entities;
 
 public class GastoPorPersona{
     public String nombre;

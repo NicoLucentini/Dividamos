@@ -1,6 +1,6 @@
-import entities.Gasto;
-import entities.GastoPorPersona;
-import entities.Grupo;
+import app.entities.Gasto;
+import app.entities.GastoPorPersona;
+import app.entities.Grupo;
 import org.junit.Assert;
 import org.junit.Test;
 
