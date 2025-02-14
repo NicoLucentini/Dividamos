@@ -116,7 +116,7 @@ public class GrupoTest {
         gasto.nombresPrestados = new ArrayList<String>(Arrays.asList(nombrePrestados));
         return gasto;
     }
-    private Grupo crearGrupo(String nombre, String... participantes){
+    public static Grupo crearGrupo(String nombre, String... participantes){
         Grupo grupo = new Grupo();
         grupo.nombre = nombre;
         grupo.participantes = new ArrayList<>(Arrays.asList(participantes));

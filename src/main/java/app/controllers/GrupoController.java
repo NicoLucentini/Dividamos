@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 
 @RestController
@@ -29,6 +31,20 @@ public class GrupoController {
             }
         }
 
+    }
+    @PostMapping("/agregarParticipante/{nombreGrupo}/{participante}")
+    public  ResponseEntity<String> agregarParticipante(@PathVariable("nombreGrupo") String nombreGrupo, @PathVariable("participante") String participante){
+        Optional<Grupo> response = grupos.stream().filter(x->x.nombre.equals(nombreGrupo)).findFirst();
+
+        if(response.isEmpty())
+            return ResponseEntity.badRequest().body("No se ha encontrado el grupo");
+
+        Grupo grupo = response.get();
+        if(grupo.participantes.contains(participante))
+            return ResponseEntity.badRequest().body("El Participante ya existe");
+
+        grupo.participantes.add(participante);
+        return ResponseEntity.ok("El participante: " + participante + " ha sido agregado al grupo "+ nombreGrupo);
     }
     @PostMapping("/agregarGasto/{nombreGrupo}")
     public ResponseEntity<String> agregarGasto(@PathVariable("nombreGrupo") String nombreGrupo, @RequestBody GastoDto gastoDto){
@@ -69,7 +85,17 @@ public class GrupoController {
         return ResponseEntity.ok(calcularGastosResponse);
     }
 
+    public static boolean duplicateString(ArrayList<String> values){
 
+        Set<String> uniqueNames = new HashSet<>();
+
+        for (String name : values) {
+            if (!uniqueNames.add(name)) {
+               return  true;
+            }
+        }
+        return false;
+    }
 
 
 }

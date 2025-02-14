@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8a581897-6ecd-499b-86d2-5d065c0fcd94" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Gasto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Gasto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/GastoPorPersona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/GastoPorPersona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Grupo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Grupo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Transaccion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Transaccion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/GrupoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GrupoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,9 +35,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "JUnit.All in Dividamos (1).executor": "Run",
     "JUnit.All in Dividamos.executor": "Run",
+    "JUnit.ControllerTest.agregarParticipanteDuplicado.executor": "Run",
+    "JUnit.ControllerTest.executor": "Run",
     "Maven.Dividamos [clean].executor": "Run",
     "Maven.Dividamos [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
     "Maven.Dividamos [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor": "Run",
@@ -54,7 +51,7 @@
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.ControllerTest.agregarParticipanteDuplicado">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="Dividamos" />
@@ -89,8 +86,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Dividamos" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ControllerTest.agregarParticipanteDuplicado" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Dividamos" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ControllerTest" />
+      <option name="METHOD_NAME" value="agregarParticipanteDuplicado" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ControllerTest.agregarParticipanteDuplicado" />
+        <item itemvalue="JUnit.ControllerTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in Dividamos" />
       </list>
