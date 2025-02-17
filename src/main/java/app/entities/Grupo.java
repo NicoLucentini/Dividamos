@@ -7,8 +7,11 @@ public class Grupo {
     public ArrayList<String> participantes = new ArrayList<>();
     public ArrayList<Gasto> gastos = new ArrayList<>();
 
-
-
+    public Grupo(){}
+    public Grupo(String nombre, String... participantes){
+        this.nombre = nombre;
+        this.participantes = new ArrayList<>(Arrays.asList(participantes));
+    }
 
     public ArrayList<GastoPorPersona> liquidarGastos(){
         ArrayList<GastoPorPersona> gastosPorPersona = new ArrayList<>();

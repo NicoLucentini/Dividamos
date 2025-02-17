@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8a581897-6ecd-499b-86d2-5d065c0fcd94" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GrupoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GrupoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Gasto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Gasto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Grupo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Grupo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,34 +27,39 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2t0VxY4KZ2ZYNm0xGx3hhKKmIal" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "JUnit.All in Dividamos (1).executor": "Run",
-    "JUnit.All in Dividamos.executor": "Run",
-    "JUnit.ControllerTest.agregarParticipanteDuplicado.executor": "Run",
-    "JUnit.ControllerTest.executor": "Run",
-    "Maven.Dividamos [clean].executor": "Run",
-    "Maven.Dividamos [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
-    "Maven.Dividamos [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor": "Run",
-    "Maven.Dividamos [package].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "E:/Workspace/Java/Dividamos/src/main/java/org/example/Main.java",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in Dividamos (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in Dividamos.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ControllerTest.agregarParticipanteDuplicado.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ControllerTest.editarGastoExistente.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ControllerTest.eliminarGastoExistente.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ControllerTest.eliminarGastoNoExistente.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ControllerTest.eliminarParticipanteNoExistente.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in Dividamos.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Dividamos [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Dividamos [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Dividamos [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Dividamos [package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;E:/Workspace/Java/Dividamos/src/main/java/org/example/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="JUnit.ControllerTest.agregarParticipanteDuplicado">
+}</component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="Dividamos" />
@@ -95,22 +103,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ControllerTest.agregarParticipanteDuplicado" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ControllerTest.eliminarGastoExistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Dividamos" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ControllerTest" />
-      <option name="METHOD_NAME" value="agregarParticipanteDuplicado" />
+      <option name="METHOD_NAME" value="eliminarGastoExistente" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ControllerTest.eliminarGastoNoExistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Dividamos" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ControllerTest" />
+      <option name="METHOD_NAME" value="eliminarGastoNoExistente" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in Dividamos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Dividamos" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ControllerTest.agregarParticipanteDuplicado" />
-        <item itemvalue="JUnit.ControllerTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.All in Dividamos" />
+        <item itemvalue="JUnit.ControllerTest.eliminarGastoNoExistente" />
+        <item itemvalue="JUnit.ControllerTest.eliminarGastoExistente" />
+        <item itemvalue="JUnit.java in Dividamos" />
+        <item itemvalue="JUnit.ControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -130,15 +157,33 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/app/entities/Grupo.java</url>
-          <line>19</line>
+          <line>22</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/app/entities/Grupo.java</url>
-          <line>24</line>
+          <line>27</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java</url>
+          <line>48</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/controllers/UsersController.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="app.controllers.GrupoController" memberName="grupos" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
