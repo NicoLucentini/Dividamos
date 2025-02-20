@@ -131,6 +131,8 @@ public class ControllerTest {
 
         Assert.assertEquals(55f, grupoController.grupos.get(0).gastos.get(0).monto, 0.0);
         Assert.assertEquals(2, grupoController.grupos.get(0).gastos.get(0).nombresPrestados.size());
+
+        String val =  response.getBody();
         Assert.assertEquals(HttpStatusCode.valueOf(200), response.getStatusCode());
     }
     @Test

@@ -3,10 +3,8 @@ package app.controllers;
 import app.controllers.responses.CalcularGastosResponse;
 import app.dtos.GastoDto;
 import app.dtos.GrupoDto;
-import app.entities.Gasto;
-import app.entities.GastoPorPersona;
-import app.entities.Grupo;
-import app.entities.Transaccion;
+import app.entities.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -21,6 +20,9 @@ import java.util.Set;
 public class GrupoController {
 
     public ArrayList<Grupo> grupos = new ArrayList<>();
+
+    @Autowired
+    public UsersController usersController;
 
     @PostMapping("/crearGrupo")
     public ResponseEntity<String> crearGrupo(@RequestBody GrupoDto grupoDto){
@@ -33,16 +35,27 @@ public class GrupoController {
 
         grupos.add(grupoDto.toGrupo());
 
-        for(Grupo g : grupos){
-            System.out.println("grupo " + g.nombre);
-            for(String participante : g.participantes){
-                System.out.println("Particpante: " + participante);
-            }
-        }
         return ResponseEntity.ok("Grupo creado correctamente");
+    }
 
+    @GetMapping("/get/{id}")
+    public ResponseEntity<ArrayList<GrupoDto>> obtenerGastos(@PathVariable("id") int id){
+
+        Optional<Usuario> res = usersController.usuarios.stream().filter(x->x.id == id).findFirst();
+        if(res.isEmpty())
+        {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        ArrayList<Grupo> gruposFiltered = grupos.stream().filter(x-> x.participantes.contains(res.get().nombre))
+                .collect(Collectors.toCollection(ArrayList::new));
+        return ResponseEntity.ok(
+                gruposFiltered.stream()
+                        .map(GrupoDto::fromGrupo).collect(Collectors.toCollection(ArrayList::new))
+        );
 
     }
+
     @PostMapping("/agregarParticipante/{nombreGrupo}/{participante}")
     public ResponseEntity<String> agregarParticipante(@PathVariable("nombreGrupo") String nombreGrupo, @PathVariable("participante") String participante){
         Optional<Grupo> response = grupos.stream().filter(x->x.nombre.equals(nombreGrupo)).findFirst();
