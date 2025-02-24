@@ -1,31 +1,29 @@
 package app.controllers;
 
-import app.entities.Usuario;
+import app.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
 public class UsersController {
 
-    public ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/crear/{nombre}/{password}")
     public ResponseEntity<String> crearUsuario(@PathVariable("nombre") String nombre,@PathVariable("password") String password){
-        usuarios.add(new Usuario(nombre, password));
+        userService.crearUsuario(nombre, password);
         return ResponseEntity.ok("Agregado correctamente");
     }
     @GetMapping("/login/{nombre}/{password}")
     public ResponseEntity<String> loginUsuario(@PathVariable("nombre") String nombre,@PathVariable("password") String password){
-        Optional<Usuario> response = usuarios.stream().filter(x -> x.nombre.equals(nombre) && x.password.equals(password)).findFirst();
 
-        if(response.isEmpty())
-            return ResponseEntity.badRequest().body("Usuario o contraseña incorrecta");
+        if(userService.loginUsuario(nombre, password).isPresent())
+            return ResponseEntity.ok("Login correcto");
 
-        return ResponseEntity.ok("Registado correctamente");
+        return ResponseEntity.badRequest().body("Usuario o contraseña incorrecta");
     }
 
 

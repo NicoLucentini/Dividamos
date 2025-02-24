@@ -12,6 +12,7 @@ public class GrupoDto implements Serializable {
     public String nombre;
     public ArrayList<String> participantes;
     public ArrayList<GastoDto> gastos;
+    public int id;
     public GrupoDto(){}
     public GrupoDto (String nombreGrupo, String... participantes){
         this.nombre = nombreGrupo;
@@ -31,6 +32,7 @@ public class GrupoDto implements Serializable {
     }
     public static GrupoDto fromGrupo(Grupo grupo){
         GrupoDto dto = new GrupoDto(grupo.nombre, grupo.participantes);
+        dto.id = grupo.id;
         dto.gastos = grupo.gastos.stream()
                 .map(GastoDto::fromGasto)
                 .collect(Collectors.toCollection(ArrayList::new));

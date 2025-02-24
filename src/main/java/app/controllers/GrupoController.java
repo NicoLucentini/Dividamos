@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.controllers.responses.CalcularGastosResponse;
+import app.dbTemp.InMemoryDatabase;
 import app.dtos.GastoDto;
 import app.dtos.GrupoDto;
 import app.entities.*;
@@ -19,7 +20,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/grupos")
 public class GrupoController {
 
-    public ArrayList<Grupo> grupos = new ArrayList<>();
 
     @Autowired
     public UsersController usersController;
@@ -30,24 +30,24 @@ public class GrupoController {
         if(duplicateString(grupoDto.participantes))
             return ResponseEntity.badRequest().body("El Participante ya existe");
 
-        if(grupos.stream().anyMatch(x -> x.nombre.equals(grupoDto.nombre)))
+        if(InMemoryDatabase.grupos.stream().anyMatch(x -> x.nombre.equals(grupoDto.nombre)))
             return ResponseEntity.badRequest().body("El nombre del grupo ya existe");
 
-        grupos.add(grupoDto.toGrupo());
+        InMemoryDatabase.grupos.add(grupoDto.toGrupo());
 
         return ResponseEntity.ok("Grupo creado correctamente");
     }
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<ArrayList<GrupoDto>> obtenerGastos(@PathVariable("id") int id){
+    @GetMapping("/get/{idUser}")
+    public ResponseEntity<ArrayList<GrupoDto>> obtenerGrupos(@PathVariable("idUser") int idUser){
 
-        Optional<Usuario> res = usersController.usuarios.stream().filter(x->x.id == id).findFirst();
+        Optional<Usuario> res = InMemoryDatabase.usuarios.stream().filter(x->x.id == idUser).findFirst();
         if(res.isEmpty())
         {
             return ResponseEntity.badRequest().body(null);
         }
 
-        ArrayList<Grupo> gruposFiltered = grupos.stream().filter(x-> x.participantes.contains(res.get().nombre))
+        ArrayList<Grupo> gruposFiltered = InMemoryDatabase.grupos.stream().filter(x-> x.participantes.contains(res.get().nombre))
                 .collect(Collectors.toCollection(ArrayList::new));
         return ResponseEntity.ok(
                 gruposFiltered.stream()
@@ -55,10 +55,29 @@ public class GrupoController {
         );
 
     }
+    @GetMapping("/getGastos/{idUser}/{idGrupo}")
+    public ResponseEntity<ArrayList<GastoDto>> obtenerGastos(@PathVariable("idUser") int id, @PathVariable("idGrupo") int idGrupo){
 
-    @PostMapping("/agregarParticipante/{nombreGrupo}/{participante}")
-    public ResponseEntity<String> agregarParticipante(@PathVariable("nombreGrupo") String nombreGrupo, @PathVariable("participante") String participante){
-        Optional<Grupo> response = grupos.stream().filter(x->x.nombre.equals(nombreGrupo)).findFirst();
+        Optional<Usuario> res = InMemoryDatabase.usuarios.stream().filter(x->x.id == id).findFirst();
+
+        if(res.isEmpty())
+            return ResponseEntity.badRequest().body(null);
+
+        Optional<Grupo> grupo = findGrupoByID(idGrupo);
+
+        if(grupo.isEmpty())
+            return ResponseEntity.badRequest().body(null);
+
+        return ResponseEntity.ok(
+                grupo.get().gastos.stream()
+                        .map(GastoDto::fromGasto).collect(Collectors.toCollection(ArrayList::new))
+        );
+
+    }
+
+    @PostMapping("/agregarParticipante/{idGrupo}/{participante}")
+    public ResponseEntity<String> agregarParticipante(@PathVariable("idGrupo") int idGrupo, @PathVariable("participante") String participante){
+        Optional<Grupo> response = InMemoryDatabase.grupos.stream().filter(x->x.id == idGrupo).findFirst();
 
         if(response.isEmpty())
             return ResponseEntity.badRequest().body("No se ha encontrado el grupo");
@@ -68,13 +87,13 @@ public class GrupoController {
             return ResponseEntity.badRequest().body("El Participante ya existe");
 
         grupo.participantes.add(participante);
-        return ResponseEntity.ok("El participante: " + participante + " ha sido agregado al grupo "+ nombreGrupo);
+        return ResponseEntity.ok("El participante: " + participante + " ha sido agregado al grupo "+ grupo.nombre);
     }
 
-    @DeleteMapping("/eliminarParticipante/{grupo}/{participante}")
-    public ResponseEntity<String> eliminarParticipante(@PathVariable("grupo") String grupo, @PathVariable("participante") String participante){
+    @DeleteMapping("/eliminarParticipante/{idGrupo}/{participante}")
+    public ResponseEntity<String> eliminarParticipante(@PathVariable("idGrupo") int idGrupo, @PathVariable("participante") String participante){
 
-        Optional<Grupo> g = grupos.stream().filter(x->x.nombre.equals(grupo)).findFirst();
+        Optional<Grupo> g =findGrupoByID(idGrupo);
         if(g.isEmpty())
             return ResponseEntity.badRequest().body("El nombre del grupo ya existe");
 
@@ -87,9 +106,9 @@ public class GrupoController {
 
     }
 
-    @PostMapping("/agregarGasto/{nombreGrupo}")
-    public ResponseEntity<String> agregarGasto(@PathVariable("nombreGrupo") String nombreGrupo, @RequestBody GastoDto gastoDto){
-       Optional<Grupo> response = grupos.stream().filter(x->x.nombre.equals(nombreGrupo)).findFirst();
+    @PostMapping("/agregarGasto/{idGrupo}")
+    public ResponseEntity<String> agregarGasto(@PathVariable("idGrupo") int idGrupo, @RequestBody GastoDto gastoDto){
+       Optional<Grupo> response = findGrupoByID(idGrupo);
 
        if(response.isEmpty())
            return ResponseEntity.badRequest().body("No se ha encontrado el grupo");
@@ -104,9 +123,9 @@ public class GrupoController {
        return ResponseEntity.ok().body("Agregado correctamente");
     }
 
-    @PutMapping("/editarGasto/{grupo}/{id}")
-    public ResponseEntity<String> editarGasto(@PathVariable("grupo") String grupo, @PathVariable("id") int id, @RequestBody GastoDto gastoDto){
-        Optional<Grupo> response = grupos.stream().filter(x->x.nombre.equals(grupo)).findFirst();
+    @PutMapping("/editarGasto/{idGrupo}/{id}")
+    public ResponseEntity<String> editarGasto(@PathVariable("idGrupo") int idGrupo, @PathVariable("id") int id, @RequestBody GastoDto gastoDto){
+        Optional<Grupo> response = findGrupoByID(idGrupo);
 
         if(response.isEmpty())
             return ResponseEntity.badRequest().body("No se ha encontrado el grupo");
@@ -125,10 +144,10 @@ public class GrupoController {
         return ResponseEntity.ok("Gasto editado correctamente");
     }
 
-    @DeleteMapping("/eliminarGasto/{grupo}/{id}")
-    public ResponseEntity<String> eliminarGasto(@PathVariable("grupo") String grupo, @PathVariable("id") int id){
-        Optional<Grupo> response = grupos.stream().filter(x->x.nombre.equals(grupo)).findFirst();
+    @DeleteMapping("/eliminarGasto/{idGrupo}/{id}")
+    public ResponseEntity<String> eliminarGasto(@PathVariable("idGrupo") int idGrupo, @PathVariable("id") int id){
 
+        Optional<Grupo> response = findGrupoByID(idGrupo);
         if(response.isEmpty())
             return ResponseEntity.badRequest().body("No se ha encontrado el grupo");
 
@@ -141,9 +160,9 @@ public class GrupoController {
 
         return ResponseEntity.ok("Gasto editado correctamente");
     }
-    @GetMapping("/calcularGastos/{nombreGrupo}")
-    public ResponseEntity<CalcularGastosResponse> calcularGastos(@PathVariable("nombreGrupo") String nombreGrupo){
-        Optional<Grupo> response = grupos.stream().filter(x->x.nombre.equals(nombreGrupo)).findFirst();
+    @GetMapping("/calcularGastos/{idGrupo}")
+    public ResponseEntity<CalcularGastosResponse> calcularGastos(@PathVariable("idGrupo") int idGrupo){
+        Optional<Grupo> response =findGrupoByID(idGrupo);
 
         if(response.isEmpty())
             return ResponseEntity.badRequest().body(null);
@@ -158,6 +177,9 @@ public class GrupoController {
         return ResponseEntity.ok(calcularGastosResponse);
     }
 
+    private Optional<Grupo> findGrupoByID(int id){
+        return InMemoryDatabase.grupos.stream().filter(x->x.id == id).findFirst();
+    }
 
     public static boolean duplicateString(ArrayList<String> values){
 

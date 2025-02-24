@@ -6,9 +6,15 @@ public class Grupo {
     public String nombre;
     public ArrayList<String> participantes = new ArrayList<>();
     public ArrayList<Gasto> gastos = new ArrayList<>();
-
-    public Grupo(){}
+    public static int ID_GRUPO = 0;
+    public int id;
+    public Grupo(){
+        ID_GRUPO++;
+        this.id = ID_GRUPO;
+    }
     public Grupo(String nombre, String... participantes){
+        ID_GRUPO++;
+        this.id = ID_GRUPO;
         this.nombre = nombre;
         this.participantes = new ArrayList<>(Arrays.asList(participantes));
     }
