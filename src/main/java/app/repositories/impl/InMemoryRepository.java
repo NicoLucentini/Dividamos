@@ -3,12 +3,17 @@ package app.repositories.impl;
 import app.dbTemp.InMemoryDatabase;
 import app.entities.Usuario;
 import app.repositories.UserRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
+@Profile("in-memory")
 public class InMemoryRepository implements UserRepository {
+
+
+    public static Long USERS_ID = 0L;
 
     @Override
     public Optional<Usuario> find(int id) {
@@ -22,6 +27,7 @@ public class InMemoryRepository implements UserRepository {
 
     @Override
     public Usuario save(Usuario usuario) {
+        usuario.setId(++USERS_ID);
        InMemoryDatabase.usuarios.add(usuario);
        return usuario;
     }

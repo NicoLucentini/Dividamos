@@ -4,11 +4,13 @@ import app.entities.Usuario;
 import app.repositories.JpaUserRepository;
 import app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
+@Profile("jpa")
 public class JpaUserRepositoryWrapper implements UserRepository {
 
     @Autowired
