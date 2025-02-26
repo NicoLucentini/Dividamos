@@ -20,8 +20,7 @@ public class Usuario {
     }
 
     public Usuario(String nombre, String password){
-        //USERS_ID++;
-        //this.id = USERS_ID;
+
         this.nombre = nombre;
         this.password = password;
     }

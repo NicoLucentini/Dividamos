@@ -5,6 +5,7 @@ import app.dbTemp.InMemoryDatabase;
 import app.dtos.GastoDto;
 import app.dtos.GrupoDto;
 import app.entities.*;
+import app.services.GastoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,12 @@ public class GrupoController {
 
     @Autowired
     public UsersController usersController;
+
+    public GastoService gastoService;
+
+    public GrupoController(GastoService gastoService){
+        this.gastoService = gastoService;
+    }
 
     @PostMapping("/crearGrupo")
     public ResponseEntity<String> crearGrupo(@RequestBody GrupoDto grupoDto){
@@ -118,48 +125,17 @@ public class GrupoController {
        if(!grupo.participantes.containsAll(gastoDto.nombresPrestados) || !grupo.participantes.contains(gastoDto.nombrePagador))
            return ResponseEntity.badRequest().body("Hay algun participante que no esta en el grupo");
 
-       grupo.gastos.add(gastoDto.toGasto());
+       Gasto gasto = gastoDto.toGasto();
+       gasto.idGrupo = (long)idGrupo;
+
+       //esto esta raro despues cuando me traiga los gastos del grupo va a ser en el grupo repositroy con un join ( calculo)
+       gastoService.agregar(gasto);
+       grupo.gastos.add(gasto);
 
        return ResponseEntity.ok().body("Agregado correctamente");
     }
 
-    @PutMapping("/editarGasto/{idGrupo}/{id}")
-    public ResponseEntity<String> editarGasto(@PathVariable("idGrupo") int idGrupo, @PathVariable("id") int id, @RequestBody GastoDto gastoDto){
-        Optional<Grupo> response = findGrupoByID(idGrupo);
 
-        if(response.isEmpty())
-            return ResponseEntity.badRequest().body("No se ha encontrado el grupo");
-
-        Optional<Gasto> gasto = response.get().gastos.stream().filter(x-> x.id == id).findFirst();
-
-        if(gasto.isEmpty())
-            return ResponseEntity.badRequest().body("No se ha encontrado el gasto");
-
-        Gasto g = gasto.get();
-        g.monto = gastoDto.monto;;
-        g.detalle = gastoDto.detalle;
-        g.nombrePagador = gastoDto.nombrePagador;
-        g.nombresPrestados = new ArrayList<>(gastoDto.nombresPrestados);
-
-        return ResponseEntity.ok("Gasto editado correctamente");
-    }
-
-    @DeleteMapping("/eliminarGasto/{idGrupo}/{id}")
-    public ResponseEntity<String> eliminarGasto(@PathVariable("idGrupo") int idGrupo, @PathVariable("id") int id){
-
-        Optional<Grupo> response = findGrupoByID(idGrupo);
-        if(response.isEmpty())
-            return ResponseEntity.badRequest().body("No se ha encontrado el grupo");
-
-        Optional<Gasto> gasto = response.get().gastos.stream().filter(x-> x.id == id).findFirst();
-
-        if(gasto.isEmpty())
-            return ResponseEntity.badRequest().body("No se ha encontrado el gasto");
-
-        response.get().gastos.removeIf(x-> x.id == id);
-
-        return ResponseEntity.ok("Gasto editado correctamente");
-    }
     @GetMapping("/calcularGastos/{idGrupo}")
     public ResponseEntity<CalcularGastosResponse> calcularGastos(@PathVariable("idGrupo") int idGrupo){
         Optional<Grupo> response =findGrupoByID(idGrupo);

@@ -1,25 +1,26 @@
 package app.entities;
 
+import jakarta.persistence.Entity;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@Entity
 public class Gasto {
 
-    public static int ID_GASTOS = 0;
+
     public int id;
     public float monto;
     public String detalle;
     public String nombrePagador;
     public ArrayList<String> nombresPrestados = new ArrayList<>();
-
+    public Long idGrupo;
     public Gasto()
     {
-        ID_GASTOS++;
-        this.id = ID_GASTOS;
+
     }
     public Gasto (String detalle, String nombrePagador, float monto, String... nombrePrestados){
-        ID_GASTOS++;
-        this.id = ID_GASTOS;
+
         this.detalle = detalle;
         this.nombrePagador = nombrePagador;
         this.monto = monto;

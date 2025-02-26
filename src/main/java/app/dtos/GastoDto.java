@@ -34,6 +34,7 @@ public class GastoDto implements Serializable {
         gasto.nombresPrestados = new ArrayList<>(nombresPrestados);
         gasto.detalle = detalle;
         gasto.nombrePagador = nombrePagador;
+
         return gasto;
     }
     public static GastoDto fromGasto(Gasto gasto){

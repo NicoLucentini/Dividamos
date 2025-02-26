@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 @Profile("in-memory")
-public class InMemoryRepository implements UserRepository {
+public class InMemoryUserRepository implements UserRepository {
 
 
     public static Long USERS_ID = 0L;

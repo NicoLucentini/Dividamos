@@ -34,6 +34,6 @@ public class JpaUserRepositoryWrapper implements UserRepository {
 
     @Override
     public void delete(int id) {
-
+        jpaUserRepository.deleteById((long)id);
     }
 }

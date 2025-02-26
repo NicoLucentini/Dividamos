@@ -2,7 +2,6 @@ package app.services;
 
 import app.entities.Usuario;
 import app.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -10,12 +9,16 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    // ✅ Best practice: Constructor injection
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
 
-    public void crearUsuario(String nombre, String password) {
-        userRepository.save(new Usuario(nombre,password));
+    public Usuario crearUsuario(String nombre, String password) {
+        return userRepository.save(new Usuario(nombre,password));
     }
 
     public Optional<Usuario> loginUsuario(String nombre, String password) {
