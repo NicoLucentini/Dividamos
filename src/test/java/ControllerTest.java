@@ -26,7 +26,7 @@ public class ControllerTest {
         grupoController = new GrupoController(new GastoService(new InMemoryGastoRepository()));
         InMemoryDatabase.grupos.clear();
         Grupo.ID_GRUPO = 0;
-        InMemoryGastoRepository.ID_GASTOS = 0;
+        InMemoryGastoRepository.ID_GASTOS = 0L;
 
     }
     @Test

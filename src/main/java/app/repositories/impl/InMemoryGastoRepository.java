@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class InMemoryGastoRepository implements GastoRepository {
 
-    public static int ID_GASTOS = 0;
+    public static Long ID_GASTOS = 0L;
 
     @Override
     public Optional<Gasto> findById(Long id) {
@@ -20,7 +20,7 @@ public class InMemoryGastoRepository implements GastoRepository {
 
     @Override
     public Gasto save(Gasto gasto) {
-        Optional<Gasto> response = findById((long)gasto.id);
+        Optional<Gasto> response = findById(gasto.id);
         if(response.isEmpty()) {
             gasto.id = ++ID_GASTOS;
             InMemoryDatabase.gastos.add(gasto);

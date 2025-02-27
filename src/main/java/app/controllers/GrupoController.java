@@ -6,6 +6,8 @@ import app.dtos.GastoDto;
 import app.dtos.GrupoDto;
 import app.entities.*;
 import app.services.GastoService;
+import app.services.UserService;
+import ch.qos.logback.core.spi.AbstractComponentTracker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,9 @@ public class GrupoController {
 
     @Autowired
     public UsersController usersController;
+
+    @Autowired
+    private UserService userService;
 
     public GastoService gastoService;
 
@@ -46,9 +51,13 @@ public class GrupoController {
     }
 
     @GetMapping("/get/{idUser}")
-    public ResponseEntity<ArrayList<GrupoDto>> obtenerGrupos(@PathVariable("idUser") int idUser){
+    public ResponseEntity<ArrayList<GrupoDto>> obtenerGrupos(@PathVariable("idUser") int idUser) {
 
-        Optional<Usuario> res = InMemoryDatabase.usuarios.stream().filter(x->x.id == idUser).findFirst();
+        //replace
+        //Optional<Usuario> res = InMemoryDatabase.usuarios.stream().filter(x->x.id == idUser).findFirst();
+
+        Optional<Usuario> res = userService.find(idUser);
+
         if(res.isEmpty())
         {
             return ResponseEntity.badRequest().body(null);
@@ -128,7 +137,6 @@ public class GrupoController {
        Gasto gasto = gastoDto.toGasto();
        gasto.idGrupo = (long)idGrupo;
 
-       //esto esta raro despues cuando me traiga los gastos del grupo va a ser en el grupo repositroy con un join ( calculo)
        gastoService.agregar(gasto);
        grupo.gastos.add(gasto);
 

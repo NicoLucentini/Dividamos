@@ -6,17 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="69ca0bc5-dd49-4e90-8f66-6dcca2aeed2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/configurations/UserConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/configurations/UserConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/GastoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/GastoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/dbTemp/InMemoryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/dbTemp/InMemoryDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/dtos/GastoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/dtos/GastoDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Gasto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Gasto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/repositories/impl/InMemoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/repositories/impl/InMemoryUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/repositories/impl/JpaUserRepositoryWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/repositories/impl/JpaUserRepositoryWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/repositories/impl/InMemoryGastoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/repositories/impl/InMemoryGastoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/services/GastoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/services/GastoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GastosControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GastosControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,9 +43,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "JUnit.All in Dividamos.executor": "Run",
-    "JUnit.GastosControllerTest.editarGastoExistente.executor": "Debug",
+    "JUnit.GastosControllerTest.editarGastoExistente.executor": "Run",
     "JUnit.GastosControllerTest.eliminarGastoExistente.executor": "Run",
     "JUnit.GastosControllerTest.executor": "Run",
     "JUnit.UserServiceTest.crearUsuario.executor": "Debug",
@@ -66,7 +65,7 @@
       <recent name="app.services" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in Dividamos">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="Dividamos" />
@@ -121,11 +120,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.java in Dividamos" />
         <item itemvalue="JUnit.GastosControllerTest.editarGastoExistente" />
         <item itemvalue="JUnit.GastosControllerTest.eliminarGastoExistente" />
         <item itemvalue="JUnit.GastosControllerTest" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -149,29 +148,29 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/app/services/UserService.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/app/services/UserService.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/GastosControllerTest.java</url>
           <line>60</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/app/controllers/GastoController.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/app/repositories/impl/InMemoryGastoRepository.java</url>
           <line>23</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/repositories/impl/JpaGastoRepositoryWrapper.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/controllers/GastoController.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

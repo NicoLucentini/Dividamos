@@ -16,6 +16,9 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public Optional<Usuario> find(int id){
+        return userRepository.find(id);
+    }
 
     public Usuario crearUsuario(String nombre, String password) {
         return userRepository.save(new Usuario(nombre,password));

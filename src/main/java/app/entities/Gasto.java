@@ -1,6 +1,8 @@
 package app.entities;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,10 +11,15 @@ import java.util.Arrays;
 public class Gasto {
 
 
-    public int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+
     public float monto;
     public String detalle;
     public String nombrePagador;
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(columnDefinition = "jsonb")
     public ArrayList<String> nombresPrestados = new ArrayList<>();
     public Long idGrupo;
     public Gasto()

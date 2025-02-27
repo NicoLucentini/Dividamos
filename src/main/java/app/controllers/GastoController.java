@@ -1,14 +1,11 @@
 package app.controllers;
 
-import app.dbTemp.InMemoryDatabase;
 import app.dtos.GastoDto;
 import app.entities.Gasto;
 import app.services.GastoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
@@ -30,8 +27,11 @@ public class GastoController {
         if(response.isEmpty())
             return ResponseEntity.badRequest().body("No se ha encontrado el gasto");
 
-        Gasto gasto = gastoDto.toGasto();
-        gasto.id = (int)id;
+        Gasto real = response.get();
+        Gasto gasto = gastoDto.toGastoEditable();
+        gasto.id = id;
+        gasto.idGrupo = real.idGrupo;
+
         gastoService.agregar(gasto);
 
         return ResponseEntity.ok("Gasto editado correctamente");
@@ -48,8 +48,6 @@ public class GastoController {
             return ResponseEntity.badRequest().body("No se ha encontrado el gasto");
 
         gastoService.delete(id);
-
-
 
         return ResponseEntity.ok("Gasto editado correctamente");
     }
