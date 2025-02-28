@@ -13,7 +13,7 @@ import java.util.Optional;
 public class InMemoryUserRepository implements UserRepository {
 
 
-    public static Long USERS_ID = 0L;
+    public static Long ID_USERS = 0L;
 
     @Override
     public Optional<Usuario> find(int id) {
@@ -26,8 +26,13 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
+    public Optional<Usuario> findByEmail(String email) {
+        return InMemoryDatabase.usuarios.stream().filter(x->x.email.equals(email)).findFirst();
+    }
+
+    @Override
     public Usuario save(Usuario usuario) {
-        usuario.setId(++USERS_ID);
+        usuario.setId(++ID_USERS);
        InMemoryDatabase.usuarios.add(usuario);
        return usuario;
     }

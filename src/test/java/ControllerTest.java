@@ -4,13 +4,16 @@ import app.dtos.GrupoDto;
 import app.entities.Gasto;
 import app.entities.Grupo;
 import app.repositories.impl.InMemoryGastoRepository;
+import app.repositories.impl.InMemoryGrupoRepository;
 import app.services.GastoService;
+import app.services.GrupoService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
+import java.security.Guard;
 import java.util.ArrayList;
 
 public class ControllerTest {
@@ -23,21 +26,22 @@ public class ControllerTest {
 
     @Before
     public void setup(){
-        grupoController = new GrupoController(new GastoService(new InMemoryGastoRepository()));
-        InMemoryDatabase.grupos.clear();
-        Grupo.ID_GRUPO = 0;
-        InMemoryGastoRepository.ID_GASTOS = 0L;
+        grupoController = new GrupoController(
+                new GrupoService(new InMemoryGrupoRepository()),
+                new GastoService(new InMemoryGastoRepository())
+        );
 
+        InMemoryDatabase.clearDatabase();
     }
     @Test
     public void agregarParticipanteInexistente(){
-        InMemoryDatabase.grupos.add(GrupoTest.crearGrupo("Prueba", "Nicolas", "Franco"));
+        grupoController.grupoService.agregar(new Grupo("Prueba", "Nicolas", "Franco"));
         grupoController.agregarParticipante(1,"Julieta");
         Assert.assertEquals(3, InMemoryDatabase.grupos.getFirst().participantes.size());
     }
     @Test
     public void agregarParticipanteDuplicado(){
-        InMemoryDatabase.grupos.add(GrupoTest.crearGrupo("Prueba", "Nicolas", "Franco"));
+        grupoController.grupoService.agregar(new Grupo("Prueba", "Nicolas", "Franco"));
         ResponseEntity<String> response = grupoController.agregarParticipante(1,"Nicolas");
         Assert.assertEquals(2, InMemoryDatabase.grupos.getFirst().participantes.size());
         Assert.assertEquals(HttpStatusCode.valueOf(400),response.getStatusCode());
@@ -75,7 +79,7 @@ public class ControllerTest {
     @Test
     public void eliminarParticipanteExistente(){
         GrupoDto dto1 = new GrupoDto("Prueba1", "Nicolas", "Julieta");
-        InMemoryDatabase.grupos.add(dto1.toGrupo());
+        grupoController.grupoService.agregar(dto1.toGrupo());
 
         ResponseEntity<String> response = grupoController.eliminarParticipante(1, "Nicolas");
 

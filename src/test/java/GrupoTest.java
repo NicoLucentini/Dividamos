@@ -1,6 +1,8 @@
 import app.entities.Gasto;
 import app.entities.GastoPorPersona;
 import app.entities.Grupo;
+import app.repositories.impl.InMemoryGrupoRepository;
+import app.services.GrupoService;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +14,7 @@ public class GrupoTest {
 
     @Test
     public void liquidarGastosDondeTodosParticipan(){
-        Grupo grupo = crearGrupo("Prueba1", "Nicolas", "Nicolas1","Nicolas2");
+        Grupo grupo = new Grupo("Prueba1", "Nicolas", "Nicolas1","Nicolas2");
 
         grupo.gastos = new ArrayList<>();
 
@@ -37,7 +39,7 @@ public class GrupoTest {
 
     @Test
     public void liquidarGastosDondeUnoNoAporto(){
-        Grupo grupo = crearGrupo("Prueba1", "Nicolas", "Nicolas1","Nicolas2");
+        Grupo grupo = new Grupo("Prueba1", "Nicolas", "Nicolas1","Nicolas2");
 
         grupo.gastos = new ArrayList<>();
 
@@ -62,7 +64,7 @@ public class GrupoTest {
 
     @Test
     public void liquidarGastosDondeUnoNoParticipa(){
-        Grupo grupo = crearGrupo("Prueba1", "Nicolas", "Nicolas1","Nicolas2");
+        Grupo grupo = new Grupo("Prueba1", "Nicolas", "Nicolas1","Nicolas2");
 
         grupo.gastos = new ArrayList<>();
 
@@ -85,7 +87,7 @@ public class GrupoTest {
     @Test
     public void ordenarPagos(){
 
-        Grupo grupo = crearGrupo("Prueba1", "Nicolas", "Nicolas1","Nicolas2", "Nicolas3","Nicolas4");
+        Grupo grupo = new Grupo("Prueba1", "Nicolas", "Nicolas1","Nicolas2", "Nicolas3","Nicolas4");
 
         grupo.gastos = new ArrayList<>();
 
@@ -105,7 +107,7 @@ public class GrupoTest {
         for(GastoPorPersona gasto : gastos){
             System.out.println("Total persona " + gasto.nombre + ", valor " + gasto.gasto);
         }
-        grupo.calcularTransacciones(gastos);
+        new GrupoService(new InMemoryGrupoRepository()).calcularTransacciones(gastos);
     }
 
     private Gasto crearGasto(String detalle, String nombrePagador, float monto, String... nombrePrestados){
@@ -116,10 +118,5 @@ public class GrupoTest {
         gasto.nombresPrestados = new ArrayList<String>(Arrays.asList(nombrePrestados));
         return gasto;
     }
-    public static Grupo crearGrupo(String nombre, String... participantes){
-        Grupo grupo = new Grupo();
-        grupo.nombre = nombre;
-        grupo.participantes = new ArrayList<>(Arrays.asList(participantes));
-        return grupo;
-    }
+
 }

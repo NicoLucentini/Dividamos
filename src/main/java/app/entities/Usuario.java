@@ -11,23 +11,26 @@ public class Usuario {
     public Long id;
     public String nombre;
     public String password;
+    public String email;
 
     public Usuario()    {}
-    public Usuario(Long id, String nombre, String password) {
+    public Usuario(Long id, String nombre, String password, String email) {
         this.id = id;
         this.nombre = nombre;
         this.password = password;
+        this.email = email;
     }
 
-    public Usuario(String nombre, String password){
+    public Usuario(String nombre, String password, String email){
 
         this.nombre = nombre;
         this.password = password;
+        this.email = email;
+    }
+    public Usuario(String nombre, String password){
+        this(nombre,password, nombre + "@test.com");
     }
 
-    public Usuario(String nombre){
-       this(0L,nombre, "");
-    }
 
     public Long getId() {
         return id;

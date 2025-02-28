@@ -12,7 +12,8 @@ public class GrupoDto implements Serializable {
     public String nombre;
     public ArrayList<String> participantes;
     public ArrayList<GastoDto> gastos;
-    public int id;
+    public Long id;
+
     public GrupoDto(){}
     public GrupoDto (String nombreGrupo, String... participantes){
         this.nombre = nombreGrupo;

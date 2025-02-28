@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 @Entity
+@Table(name = "gastos")
 public class Gasto {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

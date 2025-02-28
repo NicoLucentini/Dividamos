@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.dtos.UsuarioDto;
 import app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,23 @@ public class UsersController {
     public ResponseEntity<String> loginUsuario(@PathVariable("nombre") String nombre,@PathVariable("password") String password){
 
         if(userService.loginUsuario(nombre, password).isPresent())
+            return ResponseEntity.ok("Login correcto");
+
+        return ResponseEntity.badRequest().body("Usuario o contraseña incorrecta");
+    }
+
+    @PostMapping("/crear")
+    public ResponseEntity<String> crear(@RequestBody UsuarioDto usuario){
+        if(userService.findByEmail(usuario.email).isPresent())
+            return ResponseEntity.badRequest().body("El usuario ya existe");
+
+        userService.crear(usuario);
+        return ResponseEntity.ok("Agregado correctamente");
+    }
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UsuarioDto usuario){
+
+        if(userService.login(usuario))
             return ResponseEntity.ok("Login correcto");
 
         return ResponseEntity.badRequest().body("Usuario o contraseña incorrecta");

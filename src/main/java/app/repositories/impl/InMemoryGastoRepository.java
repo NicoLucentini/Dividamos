@@ -20,19 +20,21 @@ public class InMemoryGastoRepository implements GastoRepository {
 
     @Override
     public Gasto save(Gasto gasto) {
-        Optional<Gasto> response = findById(gasto.id);
-        if(response.isEmpty()) {
-            gasto.id = ++ID_GASTOS;
-            InMemoryDatabase.gastos.add(gasto);
+        if(gasto.id != null){
+            Optional<Gasto> response = findById(gasto.id);
+            if(response.isPresent()){
+                Gasto oldGasto = response.get();
+                oldGasto.monto = gasto.monto;;
+                oldGasto.detalle = gasto.detalle;
+                oldGasto.nombrePagador = gasto.nombrePagador;
+                oldGasto.nombresPrestados = new ArrayList<>(gasto.nombresPrestados);
+                return oldGasto;
+            }
         }
-        else {
-            Gasto oldGasto = response.get();
-            oldGasto.monto = gasto.monto;;
-            oldGasto.detalle = gasto.detalle;
-            oldGasto.nombrePagador = gasto.nombrePagador;
-            oldGasto.nombresPrestados = new ArrayList<>(gasto.nombresPrestados);
-        }
+        gasto.id = ++ID_GASTOS;
+        InMemoryDatabase.gastos.add(gasto);
         return gasto;
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package app.services;
 
+import app.dtos.UsuarioDto;
 import app.entities.Usuario;
 import app.repositories.UserRepository;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public Optional<Usuario> findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
     public Optional<Usuario> find(int id){
         return userRepository.find(id);
     }
@@ -26,5 +30,15 @@ public class UserService {
 
     public Optional<Usuario> loginUsuario(String nombre, String password) {
        return userRepository.findBy(nombre,password);
+    }
+
+    public void crear(UsuarioDto usuario) {
+        Usuario u = new Usuario(usuario.nombre, usuario.password, usuario.email);
+        userRepository.save(u);
+    }
+
+    public boolean login(UsuarioDto usuario) {
+        Optional<Usuario> u  = userRepository.findByEmail(usuario.email);
+        return u.isPresent() && u.get().password.equals(usuario.password);
     }
 }

@@ -28,6 +28,11 @@ public class JpaUserRepositoryWrapper implements UserRepository {
     }
 
     @Override
+    public Optional<Usuario> findByEmail(String email) {
+        return jpaUserRepository.findByEmail(email);
+    }
+
+    @Override
     public Usuario save(Usuario usuario) {
         return jpaUserRepository.save(usuario);
     }

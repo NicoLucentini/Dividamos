@@ -5,7 +5,9 @@ import app.dtos.GastoDto;
 import app.entities.Gasto;
 import app.entities.Grupo;
 import app.repositories.impl.InMemoryGastoRepository;
+import app.repositories.impl.InMemoryGrupoRepository;
 import app.services.GastoService;
+import app.services.GrupoService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,19 +26,20 @@ public class GastosControllerTest {
     public void setup(){
 
         gastoService = new GastoService(new InMemoryGastoRepository());
-        grupoController = new GrupoController(gastoService);
+        grupoController = new GrupoController(
+                new GrupoService(new InMemoryGrupoRepository())
+                ,gastoService);
         gastosController = new GastoController(gastoService);
-        InMemoryDatabase.grupos.clear();
-        InMemoryDatabase.gastos.clear();
-        InMemoryGastoRepository.ID_GASTOS = 0L;
-        Grupo.ID_GRUPO = 0;
+
+        InMemoryDatabase.clearDatabase();
 
     }
 
     @Test
     public void editarGastoExistente(){
         Grupo grupo = new Grupo("Prueba1", "Nicolas", "Julieta", "Franco");
-        InMemoryDatabase.grupos.add(grupo);
+
+        grupoController.grupoService.agregar(grupo);
         grupoController.agregarGasto(1, GastoDto.fromGasto(new Gasto("Detalle", "Nicolas",100, "Julieta")));
 
         //Request
@@ -53,7 +56,7 @@ public class GastosControllerTest {
     public void eliminarGastoExistente(){
 
         Grupo grupo = new Grupo("Prueba1", "Nicolas", "Julieta", "Franco");
-        InMemoryDatabase.grupos.add(grupo);
+        grupoController.grupoService.agregar(grupo);
         grupoController.agregarGasto(1, GastoDto.fromGasto(new Gasto("Detalle", "Nicolas",100, "Julieta")));
 
         ResponseEntity<String> response = gastosController.eliminarGasto(1);
@@ -66,7 +69,7 @@ public class GastosControllerTest {
 
         Grupo grupo = new Grupo("Prueba1", "Nicolas", "Julieta", "Franco");
         grupo.gastos.add(new Gasto("Detalle", "Nicolas",100, "Julieta"));
-        InMemoryDatabase.grupos.add(grupo);
+        grupoController.grupoService.agregar(grupo);
 
         ResponseEntity<String> response = gastosController.eliminarGasto( 2);
 
