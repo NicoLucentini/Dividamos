@@ -54,7 +54,7 @@ public class GrupoController {
             return ResponseEntity.badRequest().body(null);
 
         List<Grupo> grupos = grupoService.findAll();
-        ArrayList<Grupo> gruposFiltered = grupos.stream().filter(x-> x.participantes.contains(res.get().nombre))
+        ArrayList<Grupo> gruposFiltered = grupos.stream().filter(x-> x.participantes.contains(res.get().nombre) || x.participantes.contains(res.get().email))
                 .collect(Collectors.toCollection(ArrayList::new));
 
         return ResponseEntity.ok(
