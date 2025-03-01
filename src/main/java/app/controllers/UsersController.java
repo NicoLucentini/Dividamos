@@ -1,10 +1,13 @@
 package app.controllers;
 
 import app.dtos.UsuarioDto;
+import app.entities.Usuario;
 import app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -28,21 +31,32 @@ public class UsersController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<String> crear(@RequestBody UsuarioDto usuario){
+    public ResponseEntity<Usuario> crear(@RequestBody UsuarioDto usuario){
         if(userService.findByEmail(usuario.email).isPresent())
-            return ResponseEntity.badRequest().body("El usuario ya existe");
+            return ResponseEntity.badRequest().build();
 
-        userService.crear(usuario);
-        return ResponseEntity.ok("Agregado correctamente");
+        Usuario user = userService.crear(usuario);
+        return ResponseEntity.ok(user);
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UsuarioDto usuario){
+    public ResponseEntity<Usuario> login(@RequestBody UsuarioDto usuario){
 
-        if(userService.login(usuario))
-            return ResponseEntity.ok("Login correcto");
+        Usuario user = userService.login(usuario);
+        if(user != null)
+            return ResponseEntity.ok(user);
 
-        return ResponseEntity.badRequest().body("Usuario o contraseña incorrecta");
+        return ResponseEntity.badRequest().build();
     }
+    @GetMapping("/findByEmail/{email}")
+    public ResponseEntity<String> findByEmail(@PathVariable("email") String email){
 
-
+       Optional<Usuario> usuario =  userService.findByEmail(email);
+       if(usuario.isEmpty())
+       {
+         return  ResponseEntity.status(401).body("bad request");
+       }
+       else {
+           return ResponseEntity.ok("Found");
+       }
+    }
 }

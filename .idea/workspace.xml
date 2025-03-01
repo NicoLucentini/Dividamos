@@ -6,22 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="69ca0bc5-dd49-4e90-8f66-6dcca2aeed2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/dbTemp/InMemoryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/dbTemp/InMemoryDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/dtos/GrupoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/dtos/GrupoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Gasto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Gasto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Grupo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Grupo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/repositories/JpaUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/repositories/JpaUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/repositories/impl/InMemoryGastoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/repositories/impl/InMemoryGastoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/repositories/impl/InMemoryUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/repositories/impl/InMemoryUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/repositories/impl/JpaUserRepositoryWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/repositories/impl/JpaUserRepositoryWrapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GastosControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GastosControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GrupoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GrupoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +35,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "JUnit.All in Dividamos.executor": "Run",
     "JUnit.ControllerTest.executor": "Run",
     "JUnit.GastosControllerTest.editarGastoExistente.executor": "Run",
@@ -179,6 +165,31 @@
           <url>file://$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java</url>
           <line>104</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/controllers/UsersController.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/controllers/UsersController.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -32,13 +32,15 @@ public class UserService {
        return userRepository.findBy(nombre,password);
     }
 
-    public void crear(UsuarioDto usuario) {
+    public Usuario crear(UsuarioDto usuario) {
         Usuario u = new Usuario(usuario.nombre, usuario.password, usuario.email);
-        userRepository.save(u);
+        return userRepository.save(u);
     }
 
-    public boolean login(UsuarioDto usuario) {
+    public Usuario login(UsuarioDto usuario) {
         Optional<Usuario> u  = userRepository.findByEmail(usuario.email);
-        return u.isPresent() && u.get().password.equals(usuario.password);
+        if(u.isPresent() && u.get().password.equals(usuario.password))
+            return u.get();
+        return null;
     }
 }
