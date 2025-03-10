@@ -96,6 +96,7 @@ public class GrupoController {
             return ResponseEntity.badRequest().body("El Participante ya existe");
 
         grupo.participantes.add(participante);
+        grupoService.agregar(grupo);
         return ResponseEntity.ok("El participante: " + participante + " ha sido agregado al grupo "+ grupo.nombre);
     }
 

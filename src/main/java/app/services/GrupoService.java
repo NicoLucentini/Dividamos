@@ -30,6 +30,7 @@ public class GrupoService {
         return grupoRepository.save(grupo);
     }
 
+
     public ArrayList<GastoPorPersona> liquidarGastos(Grupo grupo) {
 
         return grupo.liquidarGastos();
@@ -89,4 +90,6 @@ public class GrupoService {
     public List<Grupo> findAll() {
         return grupoRepository.findAll();
     }
+
+
 }
