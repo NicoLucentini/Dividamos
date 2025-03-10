@@ -7,7 +7,8 @@
     <list default="true" id="69ca0bc5-dd49-4e90-8f66-6dcca2aeed2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/services/GrupoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/services/GrupoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GastosControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GastosControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +76,7 @@
       <command value="mvn clean package spring-boot:repackage -DskipTests" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.ControllerTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="Dividamos" />
@@ -130,9 +131,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.java in Dividamos" />
         <item itemvalue="JUnit.ControllerTest" />
+        <item itemvalue="JUnit.java in Dividamos" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.GastosControllerTest" />
         <item itemvalue="JUnit.GastosControllerTest.editarGastoExistente" />
       </list>
@@ -175,7 +176,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java</url>
-          <line>105</line>
+          <line>112</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -185,7 +186,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/app/controllers/GrupoController.java</url>
-          <line>127</line>
+          <line>134</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>

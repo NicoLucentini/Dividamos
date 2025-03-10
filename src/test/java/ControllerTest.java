@@ -1,19 +1,20 @@
 import app.controllers.GrupoController;
 import app.dbTemp.InMemoryDatabase;
 import app.dtos.GrupoDto;
-import app.entities.Gasto;
+import app.dtos.UsuarioDto;
 import app.entities.Grupo;
 import app.repositories.impl.InMemoryGastoRepository;
 import app.repositories.impl.InMemoryGrupoRepository;
+import app.repositories.impl.InMemoryUserRepository;
 import app.services.GastoService;
 import app.services.GrupoService;
+import app.services.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
-import java.security.Guard;
 import java.util.ArrayList;
 
 public class ControllerTest {
@@ -28,13 +29,23 @@ public class ControllerTest {
     public void setup(){
         grupoController = new GrupoController(
                 new GrupoService(new InMemoryGrupoRepository()),
-                new GastoService(new InMemoryGastoRepository())
+                new GastoService(new InMemoryGastoRepository()),
+                new UserService(new InMemoryUserRepository())
         );
 
         InMemoryDatabase.clearDatabase();
     }
     @Test
     public void agregarParticipanteInexistente(){
+        grupoController.grupoService.agregar(new Grupo("Prueba", "Nicolas", "Franco"));
+        grupoController.agregarParticipante(1,"Julieta");
+        Assert.assertEquals(2, InMemoryDatabase.grupos.getFirst().participantes.size());
+    }
+    @Test
+    public void agregarParticipanteExistente(){
+        UsuarioDto dto = new UsuarioDto();
+        dto.email = "Julieta";
+        grupoController.userService.crear(dto);
         grupoController.grupoService.agregar(new Grupo("Prueba", "Nicolas", "Franco"));
         grupoController.agregarParticipante(1,"Julieta");
         Assert.assertEquals(3, InMemoryDatabase.grupos.getFirst().participantes.size());

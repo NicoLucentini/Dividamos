@@ -6,8 +6,10 @@ import app.entities.Gasto;
 import app.entities.Grupo;
 import app.repositories.impl.InMemoryGastoRepository;
 import app.repositories.impl.InMemoryGrupoRepository;
+import app.repositories.impl.InMemoryUserRepository;
 import app.services.GastoService;
 import app.services.GrupoService;
+import app.services.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,8 +29,9 @@ public class GastosControllerTest {
 
         gastoService = new GastoService(new InMemoryGastoRepository());
         grupoController = new GrupoController(
-                new GrupoService(new InMemoryGrupoRepository())
-                ,gastoService);
+                new GrupoService(new InMemoryGrupoRepository()),
+                gastoService,
+                new UserService(new InMemoryUserRepository()));
         gastosController = new GastoController(gastoService);
 
         InMemoryDatabase.clearDatabase();

@@ -20,15 +20,17 @@ import java.util.stream.Collectors;
 @RequestMapping("/grupos")
 public class GrupoController {
 
-    @Autowired
-    private UserService userService;
+    public UserService userService;
 
     public GastoService gastoService;
     public GrupoService grupoService;
 
-    public GrupoController(GrupoService grupoService, GastoService gastoService){
+    public GrupoController(GrupoService grupoService,
+                           GastoService gastoService,
+                            UserService userService){
         this.grupoService = grupoService;
         this.gastoService = gastoService;
+        this.userService = userService;
     }
 
     @PostMapping("/crearGrupo")
@@ -85,6 +87,10 @@ public class GrupoController {
 
     @PostMapping("/agregarParticipante/{idGrupo}/{participante}")
     public ResponseEntity<String> agregarParticipante(@PathVariable("idGrupo") int idGrupo, @PathVariable("participante") String participante){
+
+        if(userService.findByEmail(participante).isEmpty())
+            return ResponseEntity.badRequest().body("El participante no existe");
+
         Optional<Grupo> response = grupoService.findById(idGrupo);
 
         if(response.isEmpty())
@@ -94,6 +100,7 @@ public class GrupoController {
 
         if(grupo.participantes.contains(participante))
             return ResponseEntity.badRequest().body("El Participante ya existe");
+
 
         grupo.participantes.add(participante);
         grupoService.agregar(grupo);
